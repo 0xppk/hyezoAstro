@@ -1,1 +1,2 @@
-/// <reference types="astro/client" />
+// eslint-disable-next-line
+/// <reference types="@astrojs/image/client" />

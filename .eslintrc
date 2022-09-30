@@ -1,5 +1,6 @@
 {
   /* 공홈 참조 : https://eslint.org/docs/latest/rules/ */
+  "root": true,
   "env": {
     "browser": true,
     "es2022": true,
@@ -7,15 +8,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:astro/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended" //* 항상 아래에!
   ],
-  "plugins": [
-    "react",
-    "prettier",
-    "tailwindcss",
-    "@typescript-eslint/eslint-plugin"
-  ],
+  "plugins": ["prettier", "tailwindcss", "@typescript-eslint"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -27,6 +24,7 @@
     {
       "files": ["*.astro"],
       "parser": "astro-eslint-parser",
+      "extends": ["plugin:astro/recommended"],
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
         "extraFileExtensions": [".astro"]
@@ -34,10 +32,14 @@
       "rules": {}
     },
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": "**/*.+(ts|tsx)",
       "parser": "@typescript-eslint/parser",
-      "extends": ["plugin:@typescript-eslint/recommended"],
+      "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended"],
+      "plugins": ["react", "react-hooks"],
       "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": ["error"],
+        "react-hooks/exhaustive-deps": ["warn"], // 리액트 의존성 배열 correctness 체크
         "@typescript-eslint/no-unused-vars": [
           "error",
           { "argsIgnorePattern": "^_", "destructuredArrayIgnorePattern": "^_" }
@@ -77,20 +79,18 @@
     ], // 반점 앞 뒤 공백: 앞에는 없고, 뒤에는 있게
     "eol-last": ["error", "always"], // line의 가장 마지막 줄에는 개행 넣기
     "import/no-named-as-default": 0, // default로 정의되지 않은 아이들을 불러왔음을 알려줌
-    "react/react-in-jsx-scope": "off", // import react from "react" 생략 가능
     "arrow-parens": ["error", "as-needed"], // 화살표 함수 축약 가능시 축약
-    "curly": ["error", "multi"], // if문 중괄호 생략 가능시 생략
-    "react-hooks/rules-of-hooks": ["error"],
-    "react-hooks/exhaustive-deps": ["warn"] // 리액트 의존성 배열 correctness 체크
+    "curly": ["error", "multi"] // if문 중괄호 생략 가능시 생략
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".astro"]
       }
     },
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "ignorePatterns": ["build", "dist", "public"]
 }
