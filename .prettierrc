@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "./node_modules/prettier-plugin-astro",
+    "./node_modules/prettier-plugin-tailwindcss"
+  ],
+  "overrides": [{ "files": "*.astro", "options": { "parser": "astro" } }],
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 90,
+  "trailingComma": "all",
+  "bracketSameLine": false,
+  "arrowParens": "avoid"
+}

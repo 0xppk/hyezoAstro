@@ -24,6 +24,7 @@
     {
       "files": ["*.astro"],
       "parser": "astro-eslint-parser",
+      "plugins": ["astro"],
       "extends": ["plugin:astro/recommended"],
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
