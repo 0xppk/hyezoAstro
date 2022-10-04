@@ -10,7 +10,7 @@ export default function Search() {
     <>
       <div onClick={onClick}>Search</div>
       <div
-        className={`absolute left-0 top-0  flex h-24 w-screen -translate-y-32 place-items-center bg-blue-800 px-10 text-md duration-700 ${
+        className={`absolute left-0 top-0 z-10 flex h-24 w-screen -translate-y-32 place-items-center bg-blue-800 px-10 text-md duration-700 ${
           showSearch && "-translate-y-0"
         }`}
       >
@@ -23,7 +23,8 @@ export default function Search() {
         </small>
       </div>
       <div
-        className={`absolute left-0 top-0 -z-10 h-screen w-screen bg-black/70 ${
+        onClick={() => setShowSearch(false)}
+        className={`absolute left-0 top-0 h-screen w-screen bg-black/70 ${
           showSearch ? "block" : "hidden"
         }`}
       ></div>
