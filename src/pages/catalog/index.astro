@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+const { pathname } = Astro.url;
+const data = [
+  {
+    id: 0,
+    name: "아이폰",
+  },
+  {
+    id: 1,
+    name: "갤럭시",
+  },
+  {
+    id: 2,
+    name: "샤오미",
+  },
+  {
+    id: 3,
+    name: "블랙베리",
+  },
+];
+---
+
+<Layout>
+  <h1 class="mt-32 p-20 text-black">{pathname}</h1>
+  <div class="flex justify-center space-x-20 text-center text-sm">
+    {
+      data.map(item => {
+        return (
+          <a href={`${pathname}/${item.name}`}>
+            <div class="flex-col">
+              <p>{item.id}</p>
+              <p>{item.name}</p>
+            </div>
+          </a>
+        );
+      })
+    }
+  </div>
+</Layout>

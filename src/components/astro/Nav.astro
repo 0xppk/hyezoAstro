@@ -1,0 +1,25 @@
+---
+import Cart from "@/components/react/Cart";
+import Search from "@/components/react/Search";
+const { title } = Astro.props;
+const categories = ["catalog", "studio", "updates"];
+const menu = ["log-in", "search", "cart"];
+---
+
+<div class="fixed top-0 flex w-full bg-blue-800 px-8 py-4 text-white">
+  <h1 class="text-salary">{title}</h1>
+  <ul class="flex items-center justify-around space-x-6 px-10 text-sm">
+    {
+      categories.map(category => (
+        <a href={`/${category}`}>
+          <li>{category}</li>
+        </a>
+      ))
+    }
+  </ul>
+  <ul class="flex items-center justify-end space-x-6 px-10 text-sm">
+    <a href="/account/log-in"><li>log-in</li></a>
+    <li><Search client:load /></li>
+    <li><Cart client:load /></li>
+  </ul>
+</div>;
